@@ -1,0 +1,58 @@
+#JOGO DO BICHO
+# [2:]
+#01-04 - AVESTRUZ (1)
+#05-08 - ÁGUIA (2)
+#09-12 - BURRO (3)
+#13-16 - BORBOLETA (4)
+#17-20 - CACHORRO (5)
+# 21-24 - CABRA (6)
+#25-28 - CARNEIRO (7)
+#29-32 - CAMELO (8)
+#33-36 - COBRA (9)
+#37-40 - COELHO (10)
+#41-44 -CAVALO (11)
+#45-48- ELEFANTE (12)
+#49-52- GALO (13)
+#53-56 - GATO (14)
+#57-60 - JACARÉ (15)
+#61-64 - LEÃO (16)
+#65-68 - MACACO (17)
+#69-72 - PORCO (18)
+#73-76 - PAVÃO (19)
+#77-80 - PERU (20)
+#81-84 - TOURO (21)
+#85-88 - TIGRE (22)
+#89-92 - URSO (23)
+#93-96- VIADO (24)
+#97,98,99,00 - VACA (25)
+#################################################################################
+import random
+avestruz = (1,2,3,4)
+aguia = (5,6,7,8)
+burro= (9,10,11,12)
+borboleta = (13,14,15,16)
+cachorro = (17,18,19,20)
+cabra = (21,22,23,24)
+carneiro = (25,26,27,28)
+camelo = (29,30,31,32)
+cobra = (33,34,35,36)
+coelho = (37,38,39,40)
+cavalo = (41,42,43,44)
+elefante = (45,46,47,48)
+galo = (49,50,51,52)
+gato = (53,54,55,56)
+jacare = (57,58,59,60)
+sorteio = random.randint(0,9999)
+
+print('\033[0;32mBEM VINDO AO JOGO DO BICHO!\033[m')
+numerousuario = int(input('Digite a aposta: '))
+if numerousuario >= 0 and numerousuario <= 9999:
+    print('\033[0;32mAPOSTA VÁLIDA\033[m')
+    print('\033[1;36m=-\033[m'*40)
+    print('Sua aposta: {}'.format(numerousuario))
+    print('O número sorteado foi: {}'.format(sorteio))
+else:
+    print('\033[1;31mAPOSTA INVÁLIDA\033[m')
+
+
+

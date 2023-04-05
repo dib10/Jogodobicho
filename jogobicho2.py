@@ -4,7 +4,7 @@ def obter_animal(numero):
     if numero in range(1, 5):
         return "Avestruz - Grupo 1"
     elif numero in range(5, 9):
-        return "Águia - Grupo 2"
+        return "Águia - Grupo 2 🦅"
     elif numero in range(9, 13):
         return "Burro - Grupo 3"
     elif numero in range(13, 17):

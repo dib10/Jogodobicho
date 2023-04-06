@@ -1,5 +1,5 @@
 import random
-
+from time import sleep
 def obter_animal(numero):
     if numero in range(1, 5):
         return "Avestruz - Grupo 1"
@@ -57,9 +57,9 @@ print("\033[32mBem Vindo ao simulador de jogo do bicho 🐊\033[0m")
 print("🦁Escolha uma modalidade para jogar")
 modalidades = {
     1: "Dezena",
-    2: "Centena",
-    3: "Milhar",
-    4: "Grupo"
+    2: "Centena (NÃO DISPONÍVEL)",
+    3: "Milhar (NÃO DISPONÍVEL)",
+    4: "Grupo (NÃO DISPONÍVEL)"
 }
 for k, v in modalidades.items():
     print(f"[{k}] {v}") ## k seria key e v seria value, para representar cada item e seu correspondente
@@ -75,15 +75,24 @@ if modalidade == 1: #dezena
     numero = None
     numero_gerado = random.randint(10,9999)
     while numero not in range(10, 100):
-        numero = int(input("🔟Digite uma dezena jogar na modalidade Dezena: "))
+        numero = int(input('🔟Digite uma dezena para jogar na modalidade "Dezena": '))
         aposta_ultimos_dois = numero % 100
         sorteio_ultimos_dois = numero_gerado % 100
         animal_aposta = obter_animal(aposta_ultimos_dois)
         animal_sorteado = obter_animal(sorteio_ultimos_dois)
+    print(" ")
+    print("-"* 100)
+    print('O número está sendo sorteado, boa sorte!😉')
+    sleep(3)
+    print("-"* 100)
+if numero == numero_gerado:
+    print(f'🥳Parabéns, você acertou a dezena! 🥳')
+else:
+    print(f'\033[31m😭Lamentamos mas você não acertou o número!😭\033[m')
+    print("-"* 100)
     print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
     print(f'\033[36mDezena do número sorteado é:\033[0m "\033[32m{numero_gerado%100}\033[0m"') #aqui ele pega os dois últimos dígitos
     print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
     print("-"* 100)
-    print(f'\033[35mDezena apostada:\033[m{numero}')
+    print(f'\033[35mDezena apostada: \033[m{numero}')
     print(f'\033[35mAnimal correspondente do número apostado:\033[m{obter_animal(numero)}')
-

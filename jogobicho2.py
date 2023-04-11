@@ -87,7 +87,7 @@ if modalidade == 1: #dezena
     print('O número está sendo sorteado, boa sorte!😉')
     sleep(3)
     print("-"* 100)
-if numero == numero_gerado:
+if numero == sorteio_ultimos_dois or numero == numero_gerado:
     print(f'🥳Parabéns, você acertou a dezena! 🥳')
     print("-" * 100)
     print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')

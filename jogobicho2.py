@@ -57,7 +57,7 @@ print("\033[32mBem Vindo ao simulador de jogo do bicho 🐊\033[0m")
 print("🦁Escolha uma modalidade para jogar")
 modalidades = {
     1: "Dezena",
-    2: "Centena (NÃO DISPONÍVEL)",
+    2: "Centena",
     3: "Milhar (NÃO DISPONÍVEL)",
     4: "Grupo (NÃO DISPONÍVEL)"
 }
@@ -71,37 +71,81 @@ while not 1 <= modalidade <= 4: #vericar se o usuário digita uma das modalidade
 
 print("🦁Modalidade selecionada:", modalidades[modalidade])
 
-if modalidade == 1: #dezena
+if modalidade == 1:  # dezena
     numero = None
-    numero_gerado = random.randint(0,9999)
+    numero_gerado = random.randint(0, 9999)
     while numero not in range(0, 100):
         numero = int(input('🔟Digite uma dezena para jogar na modalidade "Dezena": '))
+        valor_aposta = float(input("💰Digite o valor que deseja apostar:R$ "))
+        possivel_ganho = valor_aposta * 60
+        lucro = possivel_ganho - valor_aposta
         aposta_ultimos_dois = numero % 100
         sorteio_ultimos_dois = numero_gerado % 100
         animal_aposta = obter_animal(aposta_ultimos_dois)
         animal_sorteado = obter_animal(sorteio_ultimos_dois)
     print(" ")
-    print("-"* 100)
+    print("-" * 100)
     print(f' 🎮 Você está jogando na modalidade: {modalidades[modalidade]}')
-    print("-"* 100)
+    print(f' 💲 Caso você ganhe, seu lucro será de R$ {lucro}')
+    print("-" * 100)
     print('O número está sendo sorteado, boa sorte!😉')
     sleep(3)
-    print("-"* 100)
-if numero == sorteio_ultimos_dois or numero == numero_gerado:
-    print(f'🥳Parabéns, você acertou a dezena! 🥳')
     print("-" * 100)
-    print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
-    print(f'\033[36mDezena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 100).zfill(2)}\033[0m"')  # aqui ele pega os dois últimos dígitos
-    print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
+    if numero == sorteio_ultimos_dois or numero == numero_gerado:
+        print(f'🥳Parabéns, você acertou a dezena! 🥳')
+        print(f'💸💸\033[32mVocê investiu R${valor_aposta},e ganhou R${possivel_ganho}\033[m💸💸')
+
+        print("-" * 100)
+        print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
+        print(f'\033[36mDezena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 100).zfill(2)}\033[0m"')  # aqui ele pega os dois últimos dígitos
+        print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
+        print("-" * 100)
+        print(f'\033[35mDezena apostada: \033[m{str(numero).zfill(2)}')
+        print(f'\033[35mAnimal correspondente do número apostado:\033[m{obter_animal(numero)}')
+    else:
+        print(f'\033[31m😭Lamentamos mas você não acertou o número!😭\033[m')
+        print(f'\033[31mInfelizmente você investiu R$ {valor_aposta}, e não obteve retorno\033[m.😞')
+        print("-" * 100)
+        print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
+        print(f'\033[36mDezena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 100).zfill(2)}\033[0m"')  # aqui ele pega os dois últimos dígitos
+        print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
+        print("-" * 100)
+        print(f'\033[35mDezena apostada: \033[m{str(numero).zfill(2)}')
+        print(f'\033[35mAnimal correspondente do número apostado:\033[m{obter_animal(numero)}')
+
+
+elif modalidade == 2: #centena
+    numero = None
+    numero_gerado = random.randint(0,9999)
+    while numero not in range(0,999):
+        numero = int(input('🔟Digite uma centena para jogar na modalidade "Centena": '))
+    aposta_ultimos_dois = numero % 100
+    sorteio_ultimos_dois = numero_gerado % 100
+    animal_aposta = obter_animal(aposta_ultimos_dois) #animal da sua aposta
+    animal_sorteado = obter_animal(sorteio_ultimos_dois) #animal que foi sorteado
+    print(" ")
     print("-" * 100)
-    print(f'\033[35mDezena apostada: \033[m{str(numero).zfill(2)}')
-    print(f'\033[35mAnimal correspondente do número apostado:\033[m{obter_animal(numero)}')
-else:
-    print(f'\033[31m😭Lamentamos mas você não acertou o número!😭\033[m')
-    print("-"* 100)
-    print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
-    print(f'\033[36mDezena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 100).zfill(2)}\033[0m"')  # aqui ele pega os dois últimos dígitos
-    print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
-    print("-"* 100)
-    print(f'\033[35mDezena apostada: \033[m{str(numero).zfill(2)}')
-    print(f'\033[35mAnimal correspondente do número apostado:\033[m{obter_animal(numero)}')
+    print(f' 🎮 Você está jogando na modalidade: {modalidades[modalidade]}')
+    print("-" * 100)
+    print('O número está sendo sorteado, boa sorte!😉')
+    sleep(3)
+    print("-" * 100)
+    if numero == numero_gerado or numero == numero_gerado %1000:
+        print(f'🥳Parabéns, você acertou a centena! 🥳')
+        print("-" * 100)
+        print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
+        print(f'\033[36mCentena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 1000).zfill(3)}\033[0m"')  # aqui ele pega os tres últimos dígitos
+        print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
+        print("-" * 100)
+        print(f'\033[35mCentena apostada: \033[m{str(numero).zfill(3)}')
+        print(f'\033[35mAnimal correspondente do número apostado: \033[m{obter_animal(numero%100)}')
+    else:
+        print(f'\033[31m😭Lamentamos mas você não acertou o número!😭\033[m')
+        print("-" * 100)
+        print(f'\033[36mO número sorteado foi:\033[0m "\033[32m{numero_gerado}\033[0m"')
+        print(f'\033[36mCentena do número sorteado é:\033[0m "\033[32m{str(numero_gerado % 1000).zfill(3)}\033[0m"')  # aqui ele pega os tres últimos dígitos
+        print("\033[1;36mAnimal sorteado:\033[m", animal_sorteado)
+        print("-" * 100)
+        print(f'\033[35mCentena apostada: \033[m{str(numero).zfill(3)}')
+        print(f'\033[35mAnimal correspondente do número apostado: \033[m{obter_animal(numero%100)}')
+
